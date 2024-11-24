@@ -5,40 +5,36 @@ const Register = ({handleLogin}) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error , setError] = useState("");
-  const [loading , setLoading ] = useState(true);
 
-  const handleSubmit = async(e)=>{
-    e.preventDefault();
-    try {
-      const response = await fetch(`${API_URL}/vendor/register` ,{
-        method: 'POST',
-        headers:{
-          'Content-Type' :'application/json'
-        },
-        body: JSON.stringify({
-          username,
-          email,
-          password
-        })
-      }
-      ) 
-      const data = await response.json();
-      
-      if(response.ok){
-        console.log(data);
-        setUsername("");
-        setEmail("");
-        setPassword("");
-        alert("Vendor Register Success");
-        handleLogin();
-      }
-    } catch (error) {
-      console.error("Rister failed " ,error);
-      alert("Registration failed")
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    console.log("API URL:", `${API_URL}/vendor/register`);
+    const response = await fetch(`${API_URL}/vendor/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password }),
+    });
+    const data = await response.json();
+    
+    if (response.ok) {
+      console.log(data);
+      alert("Vendor Register Success");
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      handleLogin();
+    } else {
+      console.error("Error response:", data);
+      alert("Registration failed");
     }
+  } catch (error) {
+    console.error("Registration failed:", error);
+    alert("Registration failed");
   }
-
+};
 
   return (
     <div className='registerSection'>
