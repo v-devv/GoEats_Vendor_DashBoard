@@ -30,9 +30,10 @@ const AllProducts = () => {
         })
         console.log(" response",response)
         if(response.ok){
+            confirm(" are you sure  , you want to delete?")
             console.log('Product deleted successfully')
             setProducts(products.filter(product => product._id !== productId))
-            confirm(" are you sure  , you want to delete?")
+            
         }
     } catch (error) {
         console.error(error , "Failed to delete froduct");
