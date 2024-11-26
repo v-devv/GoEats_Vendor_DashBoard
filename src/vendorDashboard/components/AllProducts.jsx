@@ -25,7 +25,7 @@ const AllProducts = () => {
 
   const deleteProductById = async(productId)=>{
     try {
-        const response = await fetch(`${API_URL}/product/${productId}` , {
+        const response = await fetch(`${API_URL}/product/product${productId}` , {
             method: 'DELETE',
         })
         console.log(" response",response)
