@@ -25,12 +25,13 @@ const AllProducts = () => {
 
   const deleteProductById = async(productId)=>{
     try {
-        const response = await fetch(`${API_URL}/product/product${productId}` , {
+        const response = await fetch(`${API_URL}/product/${productId}` , {
             method: 'DELETE',
         })
         console.log(" response",response)
         if(response.ok){
            setProducts(products.filter(product => product._id !== productId))
+           console.log(products)
             confirm(" are you sure  , you want to delete?")
             alert("Product deleted Successfully")
             console.log('Product deleted successfully')
